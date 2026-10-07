@@ -3,23 +3,39 @@
  <html>
     <head>
         <meta charset="UTF-8">
-        <meta name="John's Car Collection" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>John's Car Collection</title>
-        <link rel="icon" href="./images/logo.jpg" type="image/jpeg">
+        <link rel="icon" href="./images/logo.svg" type="image/svg+xml">
         <link rel="stylesheet" href="styles.css">
+        <script src="theme.js" defer></script>
     </head>
     <body> 
-        <div class="shared">
-            <img src="./images/logo.jpg" alt="logo" width="200" height="200">
-            <nav>  
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
+        <header class="shared">
+            <div class="logo" role="img" aria-label="John's Car Collection monogram">
+                <span class="logo-j">J</span>
+                <span class="logo-c">c</span>
+            </div>
+            <nav aria-label="Main navigation">
+                <ul>
+                    <li><a href="index.html" data-label="Home"><span>Home</span></a></li>
+                    <li><a href="about.html" data-label="About" aria-current="page"><span>About</span></a></li>
+                </ul>
             </nav>
-        </div>
-        <h1>About Me</h1>
-        <p>Welcome to my car collection website! My name is John. 
-            I'm a passionate car enthusiast who loves to share my favorite cars with the world. 
-            This website is dedicated to showcasing a different car each week, 
-            along with interesting facts and stories about them.</p>
+            <div class="header-controls">
+                <button class="theme-toggle" type="button" aria-label="Switch to night mode" aria-pressed="false" title="Switch to night mode">
+                    <span class="theme-icon" aria-hidden="true">☾</span>
+                </button>
+                <button class="font-toggle" type="button" aria-label="Turn readable font on" aria-pressed="false" title="Turn readable font on">
+                    <span aria-hidden="true">T</span>
+                </button>
+            </div>
+        </header>
+        <main>
+            <h1>About Me</h1>
+            <p>Welcome to my car collection website! My name is John.
+                I'm a passionate car enthusiast who loves to share my favorite cars with the world.
+                This website is dedicated to showcasing a different car each week,
+                along with interesting facts and stories about them.</p>
+        </main>
     </body>
 </html>
