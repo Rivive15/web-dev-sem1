@@ -16,6 +16,7 @@
     --texture: rgb(255 255 255 / 3%);
 }
 
+
 * {
     box-sizing: border-box;
 }
@@ -135,8 +136,37 @@ body {
     cursor: pointer;
 }
 
+.lab-toggle {
+    padding: 0.45rem 0.5rem;
+    border: 0;
+    border-radius: 0.4rem;
+    background-color: var(--main);
+    color: var(--neutral);
+    font-family: Georgia, serif;
+    font-size: 1.15rem;
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1;
+    cursor: pointer;
+}
+
+:root[data-background="lab6"] body {
+    background-image:
+        linear-gradient(rgb(0 0 0 / 25%), rgb(0 0 0 / 25%)),
+        url("./images/lab6_image.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
 .theme-icon {
     transform: translateY(-0.05em);
+}
+
+.lab-toggle:hover,
+.lab-toggle:focus-visible,
+.lab-toggle:active {
+    background-color: var(--highlight);
 }
 
 .theme-toggle:hover,

@@ -1,11 +1,14 @@
 const themeToggle = document.querySelector(".theme-toggle");
 const fontToggle = document.querySelector(".font-toggle");
+const labToggle = document.querySelector(".lab-toggle");
 let savedTheme;
 let savedFont;
+let savedLabBackground;
 
 try {
     savedTheme = localStorage.getItem("color-theme");
     savedFont = localStorage.getItem("readable-font");
+    savedLabBackground = localStorage.getItem("lab-background");
 } catch (error) {
     console.error("Unable to read saved display preferences.", error);
 }
@@ -16,6 +19,10 @@ if (savedTheme === "night") {
 
 if (savedFont === "on") {
     document.documentElement.dataset.font = "readable";
+}
+
+if (savedLabBackground === "lab6") {
+    document.documentElement.dataset.background = "lab6";
 }
 
 function updateThemeToggle() {
@@ -51,8 +58,17 @@ function saveFontPreference(isReadableFont) {
     }
 }
 
+function updateLabToggle() {
+    const isLabBackground = document.documentElement.dataset.background === "lab6";
+    const label = isLabBackground ? "Switch to default background" : "Switch to Lab 6 background";
+    labToggle.setAttribute("aria-label", label);
+    labToggle.title = label;
+    labToggle.setAttribute("aria-pressed", String(isLabBackground));
+}
+
 updateThemeToggle();
 updateFontToggle();
+updateLabToggle();
 
 themeToggle.addEventListener("click", () => {
     const isNightMode = document.documentElement.dataset.theme !== "night";
@@ -78,4 +94,22 @@ fontToggle.addEventListener("click", () => {
 
     updateFontToggle();
     saveFontPreference(isReadableFont);
+});
+
+labToggle.addEventListener("click", () => {
+    const isLabBackground = document.documentElement.dataset.background !== "lab6";
+
+    if (isLabBackground) {
+        document.documentElement.dataset.background = "lab6";
+    } else {
+        delete document.documentElement.dataset.background;
+    }
+
+    updateLabToggle();
+
+    try {
+        localStorage.setItem("lab-background", isLabBackground ? "lab6" : "default");
+    } catch (error) {
+        console.error("Unable to save the background preference.", error);
+    }
 });
