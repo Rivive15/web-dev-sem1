@@ -47,6 +47,7 @@ body {
 
 :root[data-font="readable"] body {
     font-family: Verdana, Arial, sans-serif;
+    font-size: 1.5rem;
     line-height: 1.7;
 }
 
