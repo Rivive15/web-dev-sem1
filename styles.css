@@ -52,9 +52,9 @@ body {
 }
 
 .shared {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    display: flex;
     align-items: center;
+    gap: clamp(0.5rem, 2vw, 1.25rem);
     padding: clamp(0.5rem, 2vw, 1.25rem);
     background-color: var(--neutral);
     background-image: repeating-linear-gradient(
@@ -65,9 +65,23 @@ body {
     transition: background-color 200ms ease;
 }
 
+.header-brand,
+.header-actions {
+    display: flex;
+    flex: 1 1 0;
+    align-items: center;
+    min-width: 2rem;
+}
+
+.header-actions {
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
 .logo {
-    grid-column: 1;
     position: relative;
+    flex-shrink: 1;
+    min-width: 2rem;
     width: clamp(2.75rem, 7vw, 3.5rem);
     aspect-ratio: 1;
     overflow: hidden;
@@ -101,19 +115,20 @@ body {
 }
 
 .header-controls {
-    grid-column: 3;
-    justify-self: end;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.4rem;
+    min-width: 0;
+    flex-shrink: 1;
+}
+
+.header-controls > button {
+    min-width: 0;
+    flex-shrink: 1;
 }
 
 .theme-toggle {
-    display: grid;
-    place-items: center;
-    width: 2.75rem;
-    height: 2.75rem;
     border: 0;
     border-radius: 50%;
     background-color: var(--main);
@@ -123,8 +138,31 @@ body {
     cursor: pointer;
 }
 
+.controls-menu-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 1;
+    min-width: 0;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 0;
+    border-radius: 0.4rem;
+    background-color: var(--main);
+    color: var(--neutral);
+    font-size: 1.1rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.controls-menu-toggle:hover,
+.controls-menu-toggle:focus-visible,
+.controls-menu-toggle:active {
+    background-color: var(--highlight);
+}
+
 .font-toggle {
-    padding: 0.45rem 0.65rem;
     border: 0;
     border-radius: 0.4rem;
     background-color: var(--main);
@@ -138,7 +176,6 @@ body {
 }
 
 .lab-toggle {
-    padding: 0.45rem 0.5rem;
     border: 0;
     border-radius: 0.4rem;
     background-color: var(--main);
@@ -149,6 +186,17 @@ body {
     font-weight: 700;
     line-height: 1;
     cursor: pointer;
+}
+
+.theme-toggle,
+.font-toggle,
+.lab-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    padding: 0;
 }
 
 :root[data-background="lab6"] body {
@@ -177,15 +225,24 @@ body {
 }
 
 nav {
-    grid-column: 2;
+    display: flex;
+    flex: 0 1 auto;
+    justify-content: center;
+    min-width: min-content;
 }
 
 nav ul {
     display: flex;
     gap: clamp(0.4rem, 1.5vw, 1rem);
+    min-width: 0;
     margin: 0;
     padding: 0;
     list-style: none;
+}
+
+nav li {
+    flex-shrink: 1;
+    min-width: min-content;
 }
 
 nav a {
@@ -238,6 +295,62 @@ nav a[aria-current="page"],
     background-color: var(--accent);
 }
 
+@media (max-width: 599px) {
+    .shared {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        gap: clamp(0.125rem, 2vw, 0.5rem);
+        padding: 0.5rem;
+    }
+
+    .logo {
+        width: 2rem;
+        aspect-ratio: 1;
+    }
+
+    .logo-j {
+        font-size: 1.7rem;
+    }
+
+    .logo-c {
+        font-size: 1.15rem;
+    }
+
+    nav ul {
+        justify-content: center;
+        gap: clamp(0.125rem, 1vw, 0.35rem);
+    }
+
+    nav a {
+        padding: clamp(0.35rem, 2vw, 0.5rem) clamp(0.35rem, 3vw, 0.65rem);
+        font-size: clamp(0.75rem, 3vw, 0.875rem);
+    }
+
+    .controls-menu-toggle {
+        display: flex;
+    }
+
+    .header-controls {
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        right: 0.5rem;
+        z-index: 1;
+        display: none;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        background-color: var(--neutral);
+        box-shadow: 0 0.25rem 0.75rem rgb(0 0 0 / 20%);
+    }
+
+    .shared.controls-open .header-controls {
+        display: flex;
+    }
+}
+
 main {
     width: min(56rem, calc(100% - 2rem));
     margin: clamp(1rem, 4vw, 2.5rem) auto;
@@ -258,4 +371,39 @@ main img {
     width: min(600px, 100%);
     height: auto;
     margin: 0 auto;
+}
+
+@media (max-width: 599px) {
+    main {
+        width: calc(100% - 1rem);
+        margin: 1rem auto;
+        padding: clamp(1rem, 5vw, 1.5rem);
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .shared {
+        padding: clamp(0.75rem, 2vw, 1.25rem) clamp(1rem, 3vw, 2rem);
+    }
+
+    .header-controls {
+        flex-direction: row;
+        gap: clamp(0.35rem, 1vw, 0.65rem);
+    }
+
+    main {
+        width: min(60rem, calc(100% - 3rem));
+        padding: clamp(1.5rem, 3vw, 2.5rem);
+    }
+}
+
+@media (min-width: 1025px) {
+    .shared {
+        padding: clamp(0.75rem, 2vw, 1.25rem) clamp(2rem, 4vw, 4rem);
+    }
+
+    main {
+        width: min(64rem, calc(100% - 4rem));
+        padding: clamp(2rem, 4vw, 4rem);
+    }
 }

@@ -11,9 +11,11 @@
     </head>
     <body> 
         <header class="shared">
-            <div class="logo" role="img" aria-label="John's Car Collection monogram">
-                <span class="logo-j">J</span>
-                <span class="logo-c">c</span>
+            <div class="header-brand">
+                <div class="logo" role="img" aria-label="John's Car Collection monogram">
+                    <span class="logo-j">J</span>
+                    <span class="logo-c">c</span>
+                </div>
             </div>
             <nav aria-label="Main navigation">
                 <ul>
@@ -21,16 +23,21 @@
                     <li><a href="about.html" data-label="About" aria-current="page"><span>About</span></a></li>
                 </ul>
             </nav>
-            <div class="header-controls">
-                <button class="theme-toggle" type="button" aria-label="Switch to night mode" aria-pressed="false" title="Switch to night mode">
-                    <span class="theme-icon" aria-hidden="true">☾</span>
+            <div class="header-actions">
+                <button class="controls-menu-toggle" type="button" aria-label="Show display options" aria-controls="header-controls" aria-expanded="false" title="Show display options">
+                    <span aria-hidden="true">☰</span>
                 </button>
-                <button class="font-toggle" type="button" aria-label="Turn readable font on" aria-pressed="false" title="Turn readable font on">
-                    <span aria-hidden="true">T</span>
-                </button>
-                <button class="lab-toggle" type="button" aria-label="Switch to Lab 6 background" aria-pressed="false" title="Switch to Lab 6 background">
-                    <span class="lab6" aria-hidden="true">🚗</span>
-                </button>
+                <div class="header-controls" id="header-controls">
+                    <button class="theme-toggle" type="button" aria-label="Switch to night mode" aria-pressed="false" title="Switch to night mode">
+                        <span class="theme-icon" aria-hidden="true">☾</span>
+                    </button>
+                    <button class="font-toggle" type="button" aria-label="Turn readable font on" aria-pressed="false" title="Turn readable font on">
+                        <span aria-hidden="true">T</span>
+                    </button>
+                    <button class="lab-toggle" type="button" aria-label="Switch to Lab 6 background" aria-pressed="false" title="Switch to Lab 6 background">
+                        <span class="lab6" aria-hidden="true">🚗</span>
+                    </button>
+                </div>
             </div>
         </header>
         <main>

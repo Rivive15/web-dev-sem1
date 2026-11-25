@@ -1,6 +1,8 @@
 const themeToggle = document.querySelector(".theme-toggle");
 const fontToggle = document.querySelector(".font-toggle");
 const labToggle = document.querySelector(".lab-toggle");
+const controlsMenuToggle = document.querySelector(".controls-menu-toggle");
+const header = document.querySelector(".shared");
 let savedTheme;
 let savedFont;
 let savedLabBackground;
@@ -112,4 +114,12 @@ labToggle.addEventListener("click", () => {
     } catch (error) {
         console.error("Unable to save the background preference.", error);
     }
+});
+
+controlsMenuToggle.addEventListener("click", () => {
+    const isOpen = header.classList.toggle("controls-open");
+    const label = isOpen ? "Hide display options" : "Show display options";
+    controlsMenuToggle.setAttribute("aria-expanded", String(isOpen));
+    controlsMenuToggle.setAttribute("aria-label", label);
+    controlsMenuToggle.title = label;
 });
